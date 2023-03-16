@@ -1,0 +1,50 @@
+-- Create the Time Dimension table
+CREATE TABLE `Time_Dimension` (
+  `Time_Dimension_ID` INT NOT NULL AUTO_INCREMENT,
+  `Date` DATE NOT NULL,
+  `Time_of_Day` VARCHAR(20) NOT NULL,
+  `Hour` INT NOT NULL,
+  `Day_of_Week` VARCHAR(20) NOT NULL,
+  `Month` VARCHAR(20) NOT NULL,
+  `Year` INT NOT NULL,
+  PRIMARY KEY (`Time_Dimension_ID`)
+);
+
+-- Create the Crime Dimension table
+CREATE TABLE `Crime_Dimension` (
+  `Crime_Dimension_ID` INT NOT NULL AUTO_INCREMENT,
+  `Crime_Type` VARCHAR(50) NOT NULL,
+  `Crime_Severity` VARCHAR(20) NOT NULL,
+  `Crime_Location` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`Crime_Dimension_ID`)
+);
+
+-- Create the Location Dimension table
+CREATE TABLE `Location_Dimension` (
+  `Location_Dimension_ID` INT NOT NULL AUTO_INCREMENT,
+  `City` VARCHAR(50) NOT NULL,
+  `State` VARCHAR(20) NOT NULL,
+  `Zip_Code` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`Location_Dimension_ID`)
+);
+
+-- Create the Crime Incidents fact table
+CREATE TABLE `Crime_Incidents` (
+  `Incident_ID` INT NOT NULL AUTO_INCREMENT,
+  `Date` DATE NOT NULL,
+  `Time` VARCHAR(20) NOT NULL,
+  `Crime_Type` VARCHAR(50) NOT NULL,
+  `Crime_Severity` VARCHAR(20) NOT NULL,
+  `Crime_Location` VARCHAR(100) NOT NULL,
+  `Address` VARCHAR(200) NOT NULL,
+  `Source` VARCHAR(50) NOT NULL,
+  `Latitude` FLOAT NOT NULL,
+  `Longitude` FLOAT NOT NULL,
+  `Time_Dimension_ID` INT NOT NULL,
+  `Crime_Dimension_ID` INT NOT NULL,
+  `Location_Dimension_ID` INT NOT NULL,
+  PRIMARY KEY (`Incident_ID`),
+  CONSTRAINT `FK_Time_Dimension` FOREIGN KEY (`Time_Dimension_ID`) REFERENCES `Time_Dimension` (`Time_Dimension_ID`),
+  CONSTRAINT `FK_Crime_Dimension` FOREIGN KEY (`Crime_Dimension_ID`) REFERENCES `Crime_Dimension` (`Crime_Dimension_ID`),
+  CONSTRAINT `FK_Location_Dimension` FOREIGN KEY (`Location_Dimension_ID`) REFERENCES `Location_Dimension` (`Location_Dimension_ID`)
+);
