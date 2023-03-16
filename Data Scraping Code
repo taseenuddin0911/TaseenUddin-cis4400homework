@@ -1,0 +1,13 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://spotcrime.com/CT/Bridgeport'
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+crimes = soup.find_all('tr', {'class': 'incidentRow'})
+for crime in crimes:
+    date_time = crime.find('td', {'class': 'date'}).text.strip()
+    address = crime.find('td', {'class': 'address'}).text.strip()
+    crime_type = crime.find('td', {'class': 'incidentType'}).text.strip()
+    print(f'Date/Time: {date_time}\nAddress: {address}\nCrime Type: {crime_type}\n')
