@@ -1,13 +1,20 @@
 import requests
-from bs4 import BeautifulSoup
+import pandas as pd
 
-url = 'https://spotcrime.com/CT/Bridgeport'
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'html.parser')
+# Set the API endpoint
+url = "https://data.ny.gov/resource/4y8j-9pkd.json"
 
-crimes = soup.find_all('tr', {'class': 'incidentRow'})
-for crime in crimes:
-    date_time = crime.find('td', {'class': 'date'}).text.strip()
-    address = crime.find('td', {'class': 'address'}).text.strip()
-    crime_type = crime.find('td', {'class': 'incidentType'}).text.strip()
-    print(f'Date/Time: {date_time}\nAddress: {address}\nCrime Type: {crime_type}\n')
+# Set the query parameters
+query_params = {
+    "$select": "agency, agency_name, station_name, line, artist_first_name, artist_last_name, art_title, art_year, art_material, art_description, art_image_link"
+}
+
+# Make the API request and get the response
+response = requests.get(url, params=query_params)
+response_json = response.json()
+
+# Convert the JSON response to a pandas dataframe
+df = pd.DataFrame(response_json)
+
+# Save the dataframe as a CSV file
+df.to_csv("arts_for_transit.csv", index=False)
