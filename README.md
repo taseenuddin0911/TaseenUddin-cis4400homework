@@ -1,3 +1,3 @@
 # cis4400homework
 Homework assignments:
-### The homework data set is from https://data.ny.gov/Transportation/MTA-Open-Data-Catalog-and-Publication-Schedule/f462-ka72
+### The homework data set is from https://data.ny.gov/Transportation/Arts-For-Transit-Metropolitan-Transportation-Autho/4y8j-9pkd
