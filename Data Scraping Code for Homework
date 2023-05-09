@@ -36,7 +36,7 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 
 # Save the DataFrame as a CSV file in the directory
-file_path = os.path.join(directory, "response.csv")
+file_path = os.path.join(directory, "nycarts.csv")
 data.to_csv(file_path, index=False)
 
 # Save the DataFrame as a CSV file in memory
