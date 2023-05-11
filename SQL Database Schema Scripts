@@ -34,7 +34,7 @@ CREATE TABLE cis4400hw.Artwork (
 );
 
 -- Fact table
-CREATE TABLE cis4400hw.InstallationYear (
+CREATE TABLE cis4400hw.Fact_Art (
   ArtworkID INT,
   StationID INT,
   InstallationYear INT,
