@@ -43,9 +43,9 @@ data.to_csv(file_path, index=False)
 csv_buffer = StringIO()
 data.to_csv(csv_buffer, index=False)
 
-# Amazon S3 Configuration
-s3_access_key = "AKIA4YSOYAOBV6XR7JLM"
-s3_secret_key = "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"
+# Amazon S3 Configuration - removed keys for security reasons.
+s3_access_key = ""
+s3_secret_key = ""
 s3_bucket_name = "taseenuddincis4400homework"
 s3_region = "us-east-1"
 
